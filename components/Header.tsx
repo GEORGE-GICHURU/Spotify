@@ -139,7 +139,7 @@ const Header: React.FC<HeaderProps> = ({
                                 bg-tansparent
                                 text-neutral-300
                                 font-medium">
-                                Sign Up
+                                Create Account
                             </Button>
                           </div>
 
@@ -150,7 +150,7 @@ const Header: React.FC<HeaderProps> = ({
                                 bg-white
                                 px-6
                                 py-2">
-                                Log In
+                                Sign In
                             </Button>
                           </div>
                           
