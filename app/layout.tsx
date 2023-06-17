@@ -1,32 +1,44 @@
-import './globals.css'  
-import {  Montserrat } from 'next/font/google'
+import { Montserrat } from 'next/font/google'
 
+import getSongsByUserId from '@/actions/getSongsByUserId'
+import getActiveProductsWithPrices from '@/actions/getActiveProductsWithPrices'
 import Sidebar from '@/components/Sidebar'
-import SupabaseProvider from '@/providers/SupabaseProvider'
+import ToasterProvider from '@/providers/ToasterProvider'
+import ModalProvider from "@/providers/ModalProvider"
 import UserProvider from '@/providers/UserProvider'
-import ModalProvider from '@/providers/ModalProvider'
+import SupabaseProvider from '@/providers/SupabaseProvider'
+import Player from '@/components/Player'
 
-const font = Montserrat ({ subsets: ['latin'] })
+import './globals.css'
+
+const font = Montserrat({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Spotify Clone',
-  description: 'Listen to Music!',
+  description: 'Spotify Clone',
 }
 
-export default function RootLayout({
+export const revalidate = 0;
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const products = await getActiveProductsWithPrices();
+  const userSongs = await getSongsByUserId();
+
   return (
     <html lang="en">
       <body className={font.className}>
+        <ToasterProvider />
         <SupabaseProvider>
           <UserProvider>
             <ModalProvider />
-             <Sidebar>
+            <Sidebar songs={userSongs}>
               {children}
             </Sidebar>
+            <Player />
           </UserProvider>
         </SupabaseProvider>
       </body>
