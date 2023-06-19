@@ -38,6 +38,8 @@ const Header: React.FC<HeaderProps> = ({
 
     if (error) {
       toast.error(error.message);
+    } else {
+      toast.success("Logged Out!")
     }
   }
 
@@ -145,7 +147,7 @@ const Header: React.FC<HeaderProps> = ({
                     font-medium
                   "
                 >
-                  Create Account
+                  Sign Up
                 </Button>
               </div>
               <div>
@@ -153,7 +155,7 @@ const Header: React.FC<HeaderProps> = ({
                   onClick={authModal.onOpen} 
                   className="bg-white px-6 py-2"
                 >
-                  Sign In
+                  Log In
                 </Button>
               </div>
             </>

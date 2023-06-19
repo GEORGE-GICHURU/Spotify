@@ -1,4 +1,4 @@
-import { Montserrat } from 'next/font/google'
+import { Figtree } from 'next/font/google'
 
 import getSongsByUserId from '@/actions/getSongsByUserId'
 import getActiveProductsWithPrices from '@/actions/getActiveProductsWithPrices'
@@ -11,7 +11,7 @@ import Player from '@/components/Player'
 
 import './globals.css'
 
-const font = Montserrat({ subsets: ['latin'] })
+const font = Figtree({ subsets: ['latin'] })
 
 export const metadata = {
   title: 'Spotify Clone',
@@ -34,7 +34,7 @@ export default async function RootLayout({
         <ToasterProvider />
         <SupabaseProvider>
           <UserProvider>
-            <ModalProvider />
+            <ModalProvider products={products} />
             <Sidebar songs={userSongs}>
               {children}
             </Sidebar>
